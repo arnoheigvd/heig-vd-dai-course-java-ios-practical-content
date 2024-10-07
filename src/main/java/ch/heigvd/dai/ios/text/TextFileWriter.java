@@ -20,13 +20,15 @@ public class TextFileWriter implements Writable {
       for (int i = 0; i < sizeInBytes; i++) {
         write.write('a');
       }
-    } catch (IOException e) { throw new RuntimeException(e); }
-    /* Close file */
-    if (write != null) {
-      try {
-        write.close();
-      } catch (IOException e) { throw new RuntimeException(e); }
+    } catch (IOException e) { System.out.println("Exception: " + e); }
+    finally {
+      /* Close file */
+      if (write != null) {
+        try {
+          write.close();
+        } catch (IOException e) {
+          System.out.println("Exception: " + e);        }
+      }
     }
-
   }
 }

@@ -23,12 +23,15 @@ public class BufferedTextFileWriter implements Writable {
       for (int i = 0; i < sizeInBytes; i++) {
         bufferedWriter.write('a');
       }
-    } catch (IOException e) { throw new RuntimeException(e); }
-    /* Close file */
-    if (write != null) {
-      try {
-        bufferedWriter.flush();
-        bufferedWriter.close();
-      } catch (IOException e) { throw new RuntimeException(e); }
-    }  }
+    } catch (IOException e) { System.out.println("Exception: " + e); }
+    finally {
+      /* Close file */
+      if (bufferedWriter != null) {
+        try {
+          bufferedWriter.flush();
+          bufferedWriter.close();
+        } catch (IOException e) { System.out.println("Exception: " + e); }
+      }
+    }
+  }
 }

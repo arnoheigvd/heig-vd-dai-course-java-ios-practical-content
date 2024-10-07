@@ -21,12 +21,14 @@ public class BufferedTextFileReader implements Readable {
       bufferedReader = new BufferedReader(reader);
       /* Read file */
       while ((bufferedReader.read()) != -1) {};
-    } catch (IOException e) { throw new RuntimeException(e); }
-    /* Close file */
-    if (reader != null) {
-      try {
-        bufferedReader.close();
-      } catch (IOException e) { throw new RuntimeException(e); }
+    } catch (IOException e) { System.out.println("Exception: " + e); }
+    finally {
+      /* Close file */
+      if (bufferedReader != null) {
+        try {
+          bufferedReader.close();
+        } catch (IOException e) { System.out.println("Exception: " + e); }
+      }
     }
   }
 }
