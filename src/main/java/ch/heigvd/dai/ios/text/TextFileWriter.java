@@ -17,9 +17,7 @@ public class TextFileWriter implements Writable {
       /* Open file */
       write = new FileWriter(filename, StandardCharsets.UTF_8);
       /* Write file */
-      for (int i = 0; i < sizeInBytes; i++) {
-        write.write('a');
-      }
+      for (int i = 0; i < sizeInBytes; i++) write.write('a');
     } catch (IOException e) { System.out.println("Exception: " + e); }
     finally {
       /* Close file */

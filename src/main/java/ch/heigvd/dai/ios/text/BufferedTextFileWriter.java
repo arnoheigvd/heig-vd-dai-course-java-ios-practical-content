@@ -20,9 +20,7 @@ public class BufferedTextFileWriter implements Writable {
       write = new FileWriter(filename, StandardCharsets.UTF_8);
       bufferedWriter = new BufferedWriter(write);
       /* Write file */
-      for (int i = 0; i < sizeInBytes; i++) {
-        bufferedWriter.write('a');
-      }
+      for (int i = 0; i < sizeInBytes; i++) bufferedWriter.write('a');
     } catch (IOException e) { System.out.println("Exception: " + e); }
     finally {
       /* Close file */

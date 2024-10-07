@@ -22,16 +22,14 @@ public class BufferedBinaryFileWriter implements Writable {
       fos = new FileOutputStream(filename);
       bos = new BufferedOutputStream(fos);
       /* Writing binary file */
-      for (int i = 0; i < sizeInBytes; i++) {
-        bos.write(i);
-      }
-    } catch (IOException e) { throw new RuntimeException(e); }
+      for (int i = 0; i < sizeInBytes; i++) bos.write('a');
+    } catch (IOException e) { System.out.println("Exception: " + e); }
     /* Closing binary file*/
     if (fos != null) {
       try {
         bos.flush();
         bos.close();
-      } catch (IOException e) { throw new RuntimeException(e); }
+      } catch (IOException e) { System.out.println("Exception: " + e); }
     }
   }
 }

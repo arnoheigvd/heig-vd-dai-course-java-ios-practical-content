@@ -2,7 +2,6 @@ package ch.heigvd.dai.ios.binary;
 
 import ch.heigvd.dai.ios.Writable;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -21,15 +20,16 @@ public class BinaryFileWriter implements Writable {
     try {
       os = new FileOutputStream(filename);
       /* Writing binary file */
-      for (int i = 0; i < sizeInBytes; i++) {
-        os.write(i);
+      for (int i = 0; i < sizeInBytes; i++) os.write('a');
+
+    } catch (IOException e) { System.out.println("Exception: " + e); }
+    finally {
+      /* Closing binary file*/
+      if (os != null) {
+        try {
+          os.close();
+        } catch (IOException e) { System.out.println("Exception: " + e); }
       }
-    } catch (IOException e) { throw new RuntimeException(e); }
-    /* Closing binary file*/
-    if (os != null) {
-      try {
-        os.close();
-      } catch (IOException e) { throw new RuntimeException(e); }
     }
   }
 }

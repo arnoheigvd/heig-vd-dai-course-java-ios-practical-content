@@ -19,17 +19,24 @@ public class BufferedBinaryFileReader implements Readable {
     try {
       fis = new FileInputStream(filename);
       bis = new BufferedInputStream(fis);
-    } catch (FileNotFoundException e) { throw new RuntimeException(e); }
+    } catch (FileNotFoundException e) {
+      System.out.println("Exception: " + e);
+    }
     /* Reading file */
     int b;
     try {
       while ((b = bis.read()) != -1) ;
-    } catch (IOException e) { throw new RuntimeException(e); }
-    /* Closing binary file */
-    if (bis != null) {
-      try {
-        bis.close();
-      } catch (IOException e) { e.printStackTrace(); }
+    } catch (IOException e) {
+      System.out.println("Exception: " + e);
+    } finally {
+      /* Closing binary file */
+      if (bis != null) {
+        try {
+          bis.close();
+        } catch (IOException e) {
+          System.out.println("Exception: " + e);
+        }
+      }
     }
   }
 }

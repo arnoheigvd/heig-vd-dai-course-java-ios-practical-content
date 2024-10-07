@@ -20,7 +20,7 @@ public class BufferedTextFileReader implements Readable {
       reader = new FileReader(filename, StandardCharsets.UTF_8);
       bufferedReader = new BufferedReader(reader);
       /* Read file */
-      while ((bufferedReader.read()) != -1) {};
+      while ((bufferedReader.read()) != -1);
     } catch (IOException e) { System.out.println("Exception: " + e); }
     finally {
       /* Close file */
