@@ -2,6 +2,7 @@ package ch.heigvd.dai.ios.text;
 
 import ch.heigvd.dai.ios.Writable;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 /**
  * A class that writes text files. This implementation writes the file using a buffered writer
@@ -12,6 +13,22 @@ public class BufferedTextFileWriter implements Writable {
 
   @Override
   public void write(String filename, int sizeInBytes) {
-    throw new UnsupportedOperationException("Please remove this exception and implement this method.");
-  }
+    Writer write = null;
+    BufferedWriter bufferedWriter = null;
+    try {
+      /* Open file */
+      write = new FileWriter(filename, StandardCharsets.UTF_8);
+      bufferedWriter = new BufferedWriter(write);
+      /* Write file */
+      for (int i = 0; i < sizeInBytes; i++) {
+        bufferedWriter.write('a');
+      }
+    } catch (IOException e) { throw new RuntimeException(e); }
+    /* Close file */
+    if (write != null) {
+      try {
+        bufferedWriter.flush();
+        bufferedWriter.close();
+      } catch (IOException e) { throw new RuntimeException(e); }
+    }  }
 }

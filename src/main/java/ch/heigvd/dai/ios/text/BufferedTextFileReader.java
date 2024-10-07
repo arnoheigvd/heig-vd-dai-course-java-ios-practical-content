@@ -2,6 +2,7 @@ package ch.heigvd.dai.ios.text;
 
 import ch.heigvd.dai.ios.Readable;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 /**
  * A class that reads text files. This implementation reads the file using a buffered reader around
@@ -12,6 +13,20 @@ public class BufferedTextFileReader implements Readable {
 
   @Override
   public void read(String filename) {
-    throw new UnsupportedOperationException("Please remove this exception and implement this method.");
+    Reader reader = null;
+    BufferedReader bufferedReader = null;
+    try {
+      /* Open file */
+      reader = new FileReader(filename, StandardCharsets.UTF_8);
+      bufferedReader = new BufferedReader(reader);
+      /* Read file */
+      while ((bufferedReader.read()) != -1) {};
+    } catch (IOException e) { throw new RuntimeException(e); }
+    /* Close file */
+    if (reader != null) {
+      try {
+        bufferedReader.close();
+      } catch (IOException e) { throw new RuntimeException(e); }
+    }
   }
 }
